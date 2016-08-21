@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+ul,h2{ margin:0; padding:0;}
+li{ list-style:none;}
+img{ border:none; vertical-align:top;}
+h2{width:182px; height:25px; font-size:16px; color:#FFF; background:#03F; line-height:25px;text-align:center;z-index:1;}
+#content{ height:450px; position:relative;overflow:hidden; width:180px; border:1px solid #CCC; padding:20px 0px;}
+ul{ position:relative;top:0;}
+ul li{ position:relative;}
+#con_top{height:20px; width:180px; background:url(img/first-6.png) no-repeat; position:absolute; left:0;top:0;z-index:1;}
+#con_foot{height:20px; width:180px; background:url(img/first-7.png) no-repeat;z-index:1; position:absolute; left:0;bottom:0;}
+</style>
+</head>
+
+<body>
+
+    <h2>预览器</h2>
+    <div id="content">
+    	<div id="con_top"></div>
+        <ul>
+        	<li><img src="img/first-1.png"</li>
+        	<li><img src="img/first-2.png"</li>
+        	<li><img src="img/first-3.png"</li>
+        	<li><img src="img/first-4.png"</li>
+        	<li><img src="img/first-5.png"</li>
+        	<li><img src="img/first-1.png"</li>
+        	<li><img src="img/first-2.png"</li>
+        	<li><img src="img/first-3.png"</li>
+        	<li><img src="img/first-4.png"</li>
+        	<li><img src="img/first-5.png"</li>
+        	<li><img src="img/first-1.png"</li>
+        </ul>
+        <div id="con_foot"></div>
+    </div>
+
+<script>
+ var top = document.getElementById('con_top');
+ var foot = document.getElementById('con_foot');
+ var con = document.getElementById('content');
+ var oul = document.getElementsByTagName('ul')[0];
+ var timerup = null;
+ var timerdown = null;
+
+ function getStyle( obj, attr ){
+	return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle( obj )[attr];
+}
+ // 设置向上按钮按下的动作
+ top.onmousedown = function (){
+	 timerup = setInterval(function (){
+	if(parseInt(getStyle(oul, 'top')) > -440) {
+		oul.style.top = parseInt(getStyle(oul, 'top')) - 20 + 'px';
+			} else {
+			oul.style.top = '-440px';
+			}
+	 },100)
+	 }
+ top.onmouseup = function (){
+	 clearInterval(timerup);
+	 }
+	 // 设置向下按钮按下的动作
+ foot.onmousedown = function (){
+	timerdown = setInterval(function (){
+	var nowtop =  parseInt(getStyle(oul, 'top'));
+	if(parseInt(getStyle(oul, 'top')) < 0) {
+		oul.style.top = 20 + nowtop + 'px';
+			} else {
+			oul.style.top = '0px';
+			}
+	 },100)
+	 }
+ foot.onmouseup = function (){
+	 clearInterval(timerdown);
+	 }
+ 
+</script>
+</body>
+</html>

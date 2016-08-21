@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body{ text-align:center;}
+#wrap{width:400px;height:400px; margin:30px auto 0; background:#f1f1f1; border:5px solid #CCC; position:relative;}
+#wrap a{ width:40px; height:40px;font-size:30px; background:#000; color:#fff; opacity:0.6; filter:alpha(opacity:60); text-decoration:none; text-align:center;}
+#wrap a:hover{opacity:0.9; filter:alpha(opacity:90);}
+#pre1{ position:absolute;left:0;top:185px;}
+#next1{ position:absolute;right:0;top:185px;}
+#span1{ position:absolute;left:0;top:0px; width:400px; height:30px; font-size:14px; line-height:30px; text-align:center; background:#000;opacity:0.6; filter:alpha(opacity:60);color:#fff;}
+#p1{ position:absolute;left:0;bottom:0px; width:400px; height:30px; font-size:14px; line-height:30px; text-align:center; background:#000;opacity:0.6; filter:alpha(opacity:60);margin:0;color:#fff;}
+#img1{width:400px;height:400px;}
+</style>
+<script>
+window.onload = function (){
+	var oPrev = document.getElementById('pre1');
+	var oNext = document.getElementById('next1');
+	var oP = document.getElementById('p1');
+	var oSpan = document.getElementById('span1');
+	var oImg = document.getElementById('img1');
+	var oInputl = document.getElementById('input1');
+	var oInputr = document.getElementById('input2');
+	
+	
+	var arrUrl = [ 'img/pict1.jpg','img/pict2.jpg', 'img/pict3.jpg', 'img/pict4.jpg'];
+	var arrText = [ '第一张图片', '第二张图片', '第三张图片', '第四张图片' ];
+	var num = 0;
+	
+	var onOff = true;
+	
+
+	
+	function fnTab(){
+		oP.innerHTML = arrText[num];
+		oSpan.innerHTML = num+1 + ' / ' + arrText.length;
+		oImg.src = arrUrl[num];
+	}
+	fnTab();
+		
+		oInputl.onclick = function (){onOff = true};
+		oInputr.onclick = function (){onOff = false};
+	
+		oPrev.onclick = function (){
+			num --;
+			if( num == -1 ){
+				if ( onOff){num = arrText.length-1;}else{
+						alert('这是第一张图片');
+						num = 0;
+						}
+				}
+				fnTab();
+			};
+		
+		oNext.onclick = function (){
+			num ++;
+			if( num == arrText.length ){
+				if( onOff){num = 0;}else{
+					alert('这是最后一张图片');
+					num = arrText.length-1
+					}
+				}
+				fnTab();
+			};
+	}
+</script>
+</head>
+
+<body>
+<input  id="input1" type="button" value="循环切换">
+<input  id="input2" type="button" value="顺序切换">
+<div id="wrap">
+	<a href="javascript:;" id="pre1"><</a>
+    <a href="javascript:;" id="next1">></a>
+    <span id="span1">图片数量计算中....</span>
+    <p id="p1">图片文字加载中...</p>
+    <img id="img1"/>
+</div>
+</body>
+</html>

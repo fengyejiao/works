@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#content{width:820px; height:580px; margin:0 auto; background:#3FF; border:5px solid #000; padding:5px; position:relative;}
+#content_left{ width:326px; height:220px; position:absolute;left:5px;top:150px;}
+#content_left img{width:326px; height:220px;}
+#content_right{ width:450px;height:500px;position:absolute;right:5px;top:30px;}
+#content_right img{width:450px;height:500px;}
+</style>
+<script>
+window.onload = function(){
+	/*
+	要实现的操作：
+	1.点击按钮时实现两组图片的顺序切换；
+	2.点击图片时实现图片的顺序切换；
+	3.点击图片改变顺序后再点击按钮依然能够顺序切换；
+	*/	
+	//找到所需的变量
+	var oPrev = document.getElementById('prev');
+	var oNext = document.getElementById('next');
+	var oLeft = document.getElementById('content_left');
+	var oRight = document.getElementById('content_right');
+	var oLimg = oLeft.getElementsByTagName('img')[0];
+	var oRimg = oRight.getElementsByTagName('img')[0];
+	var num1 = 0;
+	var num2 = 0;
+	
+	//建立图片数组
+	var arrLurl = ['img/thum5.jpg','img/thum6.jpg','img/thum7.jpg','img/thum8.jpg','img/thum9.jpg'];
+	var arrRurl = ['img/thum1.png','img/thum2.png','img/thum3.png','img/thum4.png'];
+	
+	//实现操作1
+	oNext.onclick = function (){
+		num1++;
+		num2++;
+		if ( num1 == arrLurl.length){num1 = 0;}
+		oLimg.src = arrLurl[num1]
+		if ( num2 == arrRurl.length){num2 = 0;}
+		oRimg.src = arrRurl[num2]
+	}
+	oPrev.onclick = function (){
+		num1--;
+		num2--;
+		if ( num1 == -1){ num1 = arrLurl.length -1;}
+		oLimg.src = arrLurl[num1]
+		if ( num2 == -1){num2 = arrRurl.length -1;}
+		oRimg.src = arrRurl[num2]
+	}
+	oLimg.onclick = function (){
+		num1++;
+		if ( num1 == arrLurl.length){num1 = 0;}
+		oLimg.src = arrLurl[num1]
+		}
+	oRimg.onclick = function (){
+		num2++;
+		if(num2 == arrRurl.length){num2 = 0;}
+		oRimg.src = arrRurl[num2]
+		}
+}
+</script>
+</head>
+
+<body>
+<div id="content">
+<input id="prev" type="button" value="上一组">
+<input id="next" type="button" value="下一组">
+<div id="content_left">
+<img src="img/thum5.jpg">
+</div>
+<div id="content_right">
+<img src="img/thum1.png">
+</div>
+</div>
+</body>
+</html>

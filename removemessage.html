@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script>
+window.onload = function (){
+var inp = document.getElementsByTagName('input');
+var ul = document.getElementsByTagName('ul')[0];
+var ali = ul.getElementsByTagName('li');
+ 	inp[1].onclick = function (){
+		var lis = document.createElement('li');
+		lis.innerHTML = inp[0].value;
+		lis.onoff = true;
+		if(ul.children[0]){
+			ul.insertBefore(lis,ul.children[0]);
+			}else{
+				ul.appendChild(lis);
+				}
+	
+		//alert(ali.length)
+		if(ali.length > 10){
+			ul.removeChild(ul.lastElementChild);
+			}
+			inp[0].value = '';
+		for(var i=0;i<ali.length;i++){
+			//ali[i].index = i;			
+			ali[i].fl = true;
+			ali[i].onmousedown = function (){
+			if(this.fl){
+				this.style.backgroundColor = 'red';
+				this.fl = false;
+				}else{
+					this.style.backgroundColor = '';
+					this.fl = true;
+					}
+			}
+		}
+		inp[2].onclick = function(){
+			for(var i=0;i<ali.length;i++){
+				if(!ali[i].fl){
+					ul.removeChild(ali[i]);
+					i--;
+					}
+				}
+			}
+	}
+}
+</script>
+</head>
+
+<body>
+<input type="text" value="">
+<input type="button" value="留言">
+<input type="button" value="批量删除">
+<ul></ul>
+</body>
+</html>

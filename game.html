@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>测试</title>
+<style>
+body,h1,p,input,textarea{ margin:0; padding:0;}
+body{ background:url(img/img1/4.jpg);}
+#wrap{ margin:10px auto;width:300px;}
+h1{ width:298px; height:80px; font-size:48px; line-height:80px; color:#FFF; text-align:center; margin-bottom:20px;}
+#exp{ width:298px; height:60px; background:#FFF; border:1px solid #CCC; margin-bottom:20px;opacity:0.9; text-align:center;}
+#exp img{ margin:20px 5px 0 0;}
+textarea{ width:298px; height:60px;font-size:36px; line-height:60px; border:1px solid #ccc; text-align:center;resize: none;outline: none; color:#F00; margin-bottom:20px;opacity:1}
+input{ width:300px; height:60px;font-size:36px; line-height:60px; border:1px solid #ccc; text-align:center; margin-bottom:20px;}
+#rule{width:270px; border:10px solid #CCC;font-size:18px; line-height:28px; color:#fff; padding:5px;}
+</style>
+<script src="script/exe.js"></script>
+<script>
+window.onload = function (){
+var exp = document.getElementById('exp');
+var imgs = exp.getElementsByTagName('img');
+var h1 = document.getElementsByTagName('h1')[0];
+var txt = document.getElementsByTagName('textarea')[0];
+var btn = document.getElementsByTagName('input')[0];
+var json = {
+	'h1color':['#F00','#ff0','#0f0','#fff',],
+	'img':['img/img1/1.gif','img/img1/1.png','img/img1/2.gif',]
+	}
+var num = 0;
+var onoff = true;
+var b = 0;
+//初始化
+//1.标题变色
+	function change(){
+		h1_timer = setInterval (function(){
+		h1.style.color = json.h1color[num];
+		if(num === json.h1color.length-1){num = -1;}
+		num++;
+		},500)
+		}
+	change();
+	h1.onclick = function (){
+		if(onoff){
+			clearInterval (h1_timer);
+			}else{
+			change();	
+				}
+		onoff = !onoff;
+		}
+//2.输入框闪烁
+	function twinkle(){
+		txt.timer = setInterval (function (){
+		opacity(txt,10,0,50,function (){
+			txt.style.opacity = 1;
+			})
+		},100)
+		}
+	twinkle();
+	txt.onclick =function (){
+		clearInterval(txt.timer)
+		txt.value = '';
+		}
+//系统自动生成0-100中的任意整数
+var a = Math.round(Math.random()*100)
+//判断输入值是否为数字
+function detectNum ( str ) {
+		var n = 0;
+		for ( var i=0; i<str.length; i++ ) {
+			n = str.charCodeAt(i);
+			if ( n<48 || n>57 )return true;
+		}
+		return false;
+	}
+	//点击确定判断数字是否等于系统生成值
+btn.onclick = function (){
+	 b++;
+	var c = txt.value;
+	if(detectNum ( c )){
+		alert('请输入数字');
+		}
+	if(parseInt(txt.value) < a){ 
+		alert('大胆一点，太小了数字');
+		exp.innerHTML += '<img src="'+json.img[0]+'">'; 
+	}
+	if(parseInt(txt.value) > a){ 
+		alert('天啊，太大了数字');
+		exp.innerHTML += '<img src="'+json.img[0]+'">';
+	}
+	if( parseInt(txt.value) == a){
+		var str = '';
+		txt.value = '太厉害，恭喜你了';
+		twinkle();
+		exp.innerHTML = '';
+		for(var i=0;i<6;i++){
+			str += '<img src="'+json.img[2]+'">';
+			}
+		exp.innerHTML = str;
+		}
+	if(b == 10){
+		txt.value = '你失败了'
+		twinkle();
+		exp.innerHTML = '';
+		for(var i=0;i<6;i++){
+			str += '<img src="'+json.img[1]+'">';
+			}
+		exp.innerHTML = str;
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+ <h1>猜数游戏</h1>
+ <p id="exp"></p>
+ <div>
+  <textarea>请输入数字</textarea>
+ </div>
+ <input type="button" value="确定">
+ <p id="rule">游戏规则：请在输入框中输入0-100中的任意一个数字，当你输入的数字与系统默认数字相等时，挑战成功，不相等则可以再次输入数字，但只有十次机会，加油吧小伙伴。</p>
+</div> 
+</div>
+</body>
+</html>

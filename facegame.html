@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link href="style/f-css.css" rel="stylesheet">
+<script src="script/m.js"></script>
+<script>
+window.onload  = function (){
+var star = document.getElementById('star');
+var game = document.getElementById('game');
+var ul = document.getElementsByTagName('ul')[0];
+var lis = ul.getElementsByTagName('li');
+var onoff = true;
+
+var n ='';
+
+star.onclick = function (){
+	var Oimg = game.getElementsByTagName('img')[0];
+	var that = '';
+	var f = 200;
+    var num = 0;
+	var num1 = 0;
+	var arrurl = ['img1/1.png','img1/2.png','img1/3.png','img1/4.png','img1/5.png','img1/6.png','img1/7.png','img1/8.png','img1/9.png','img1/10.png','img1/11.png','img1/qq.png']
+	onc();
+	function onc(){
+	game.innerHTML = '<img src="'+arrurl[Math.round(Math.random()*10)]+'"/>';
+	var imgs = game.getElementsByTagName('img')[0];
+	imgs.style.left = Math.round(Math.random()*660+10) + 'px';
+	imgs.style.top = 0+'px';
+	//alert(imgs.style.left);
+	f = f-30;
+	if(f <= 20){ f=20;}
+	
+	doMove(imgs,'top',5,428,f,function(){
+		num++;
+		imgs.style.opacity = 0;
+		lis[1].innertHTML = '';
+		lis[1].innerHTML = '失分：'+num+'分';
+		if(num < 10){
+			shake(game,'left',10,function(){
+			onc();
+			})
+			}else{
+				alert('点击太慢了，你失败了，从新再来一次吧');
+				}
+		})
+	imgs.onmousedown = function (){
+		num1++;
+		lis[0].innerHTML = '';
+		lis[0].innerHTML = '得分：'+num1+'分';
+		onoff = false;
+		this.src = arrurl[11];
+		clearInterval(imgs.timer)
+		shake(this,'left',40);
+		opacity(this,10,0,function (){
+			if(num1<20){
+				onc();
+				}else{
+					alert('你的鼠标太快了')
+					}
+			
+			})
+		}
+	}
+	
+	
+	}
+	
+
+}
+</script>
+</head>
+
+<body>
+<h2>你的鼠标有多快？</h2>
+<p>游戏说明：点击“开始游戏”，随机掉落各种QQ表情，点击它，不要让他点下去</p>
+<div id="star">开始游戏</div>
+<div id="game"></div>
+<ul>
+ 	<li>得分：0分</li>
+ 	<li>失分：0分</li> 
+</ul>
+</body>
+</html>

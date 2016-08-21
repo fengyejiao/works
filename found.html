@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body,ul,p,dl,dd,input{ margin:0; padding:0;}
+li{ list-style:none;}
+#wrap{ margin:10px auto; width:400px; border:5px solid #CCC; padding:5px; position:relative}
+p{ background:#FFC; font-size:14px; line-height:20px; width:300px;}
+dl{ width:60px; position:absolute;right:20px;top:10px; background:#CCC;}
+dd{ width:60px;font-size:16px; line-height:30px; text-align:center; display:none;}
+#table{ margin-top:10px; display:none;}
+ul{ background:#FCC;width:300px; height:30px;}
+ul li{float:left; width:60px; font-size:16px; line-height:30px; text-align:center; margin-right:10px;}
+.found{width:300px; height:34px; margin-top:10px; background:#F99;}
+input{ width:40px; height:30px; font-size:16px; line-height:30px;}
+.input{ width:110px; height:30px;}
+#wrap .show{display:block;}
+#wrap .hidden{display:none;}
+span{ color:red;}
+</style>
+<script>
+window.onload = function (){
+ //初始化
+ //让展开显示
+ var dd = document.getElementsByTagName('dd');
+ var ul = document.getElementsByTagName('ul')[0];
+ var lis = ul.getElementsByTagName('li');
+ var table = document.getElementById('table');
+ var divs = table.getElementsByTagName('div');
+ var inputf = divs[0].getElementsByTagName('input');
+ var inputs = divs[1].getElementsByTagName('input');
+ var p = document.getElementsByTagName('p')[0];
+ dd[0].style.display = 'block';
+ //点击展开出现选择栏
+ dd[0].onclick = function (){
+	 dd[1].style.display = 'block';
+	 dd[2].style.display = 'block';
+	 }
+ //点击查找出现功能块
+  for(var i=0;i<dd.length;i++){
+		 dd[i].index = i
+		 }
+ dd[1].onclick = function (){
+	 var i = this.index;
+	 show(i)
+ divs[1].style.display = 'none';
+	 }
+ //点击找替换现功能块
+ dd[2].onclick = function (){
+	 var i = this.index;
+	 show(i)
+ divs[0].style.display = 'none';
+	 }
+ 
+ function show(a){
+	 for(var i=0;i<dd.length;i++){
+		 dd[i].style.background = 'none';
+		 }
+	 dd[a].style.background = '#f99';
+	 table.style.display = 'block';
+	 for(var i=0;i<lis.length;i++){
+		 lis[i].style.background = 'none';
+		 }
+	 lis[a-1].style.background = '#ccc';
+	 for(var i=0;i<divs.length;i++){
+		 divs[i].style.display = 'block';
+		 }
+	 }
+ //查找
+ inputf[1].onclick = function (){
+	var con = p.innerHTML;
+	var str = inputf[0].value;
+	
+	var arr = con.split(str);
+	
+	p.innerHTML = arr.join('<span style="color:red">'+str+'</span>')
+	
+	 }
+ //替换
+ inputs[2].onclick = function (){
+	 var cons = p.innerHTML;
+	 var s = inputs[0].value;
+	 
+	 var ns = inputs[1].value;
+	
+	 var arr = cons.split(s);
+	
+	 p.innerHTML = arr.join('<span style="color:red">'+ns+'</span>')
+	
+	 }
+ 
+
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+ <p>秒味课堂是一支充满温馨并且极富人情味的IT团队；2010~2011年，秒味深度关注WEB前端开发领域，为此精心研发出一套灵活而充满趣味的JavaScript课程。2011~2013年，秒味精准研发出最新HTML5\CSS3课程，并推出远程培训课堂方案，尝试将线下优良的培训模式移植到远程网络培训中，希望尽最大努力，将一种快乐愉悦的授课体验、结合HTML\CSS\JS知识点，精准传递给秒味课堂的每一位学员。</p>
+ <dl>
+  <dd>展开</dd>
+  <dd>查找</dd>
+  <dd>替换</dd>
+ </dl>
+<div id="table">
+ <ul>
+  <li>查找</li>
+  <li>替换</li>
+ </ul>
+ <div class="found">
+  <input class="input" type="text">
+  <input type="button" value="查找">
+ </div>
+ <div class="found">
+  <input class="input" type="text">
+  <input class="input" type="text">
+  <input type="button" value="替换">
+ </div>
+</div>
+</div>
+</body>
+</html>

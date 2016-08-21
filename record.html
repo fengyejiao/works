@@ -1,0 +1,431 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+		body,h2,h3,p{padding: 0;margin: 0;font-size: small;}
+		ul,ol{margin: 0;padding: 0;list-style-type: none;}
+		a{text-decoration: none;}
+		img{border:none;vertical-align: middle;}
+		.wrap{width: 300px;height: 700px;margin: 30px auto;background: #c9daf8;}
+		#header{height: 36px;position: relative;}
+		#header h2{position: absolute;left: 0;font-size: 130%;line-height: 35px;padding: 0 20% 0 10% ;border-bottom: 1px solid #6fa8dc;color: #103142;}
+		#header ul{position: absolute;bottom: 2px;right: 7%;font-size: 90%;}
+		#header li{float: left;width: 35px;height: 24px;line-height: 24px;text-align: center;}
+		#header a{display: block;color: #185273;border:1px solid #6fa8dc;border-right: 0;}
+		a#last{border-right: 1px solid #6fa8dc;}
+		#header a:hover{border-bottom: 0;background: #fff;color: #000;}
+		#content{font-size: 90%;padding: 0 4% 4%;}
+		#content li{line-height: 26px;border-bottom: 1px dotted #fff;position: relative;}
+		#content strong{width: 18px;height: 14px;line-height: 14px;text-align: center;padding: 1px 0;position: absolute;top: 5px;left: 5px;z-index: 99;color: #fff;background-color: #185a84;}
+		#content h3{display: inline-block;padding-left: 36px;}
+		#content h3 a{color: #393131;}
+		#content div{overflow: hidden;padding: 6px 0 8px 36px;background: #fff;position: relative;display: none;}
+		#content div img{float: left;}
+		#content div p{float: left;width: 110px;line-height: 1.5em;padding-left: 1em;}
+		#content div a{position: absolute;width: 42px;height: 20px;background: #29739c;color: #fff;bottom: 5px;right: 5px;text-align: center;line-height: 20px;}
+		#daily{}
+		#monthly{display: none;}
+		#all{display: none;}
+		#header .active{background: #fff;}
+		#content .show{display: block;}
+		#content .hide{display: none;}
+	</style>
+    <script>
+	
+    window.onload = function (){
+	var header = document.getElementById("header");
+	var header_a = header.getElementsByTagName('a');	
+	var content = document.getElementById("content");
+	var oL = content.getElementsByTagName("ol");	
+	
+	function show(whichoL){
+		for(var i=0;i<oL.length;i++){
+			oL[i].className = "hide";
+			}
+		whichoL.className = "show";
+		}
+	for( var i=0;i<header_a.length;i++){
+		header_a[i].index = i;
+		header_a[i].onclick = function (){
+			for(var j=0;j<oL.length;j++){
+				header_a[j].className = '';
+				if(this.index == j){
+				this.className = "active";
+				show(oL[j]);
+					}
+				}
+			}
+		}
+	for(var i=0;i<oL.length;i++){tab(i);}
+		
+	function tab(a){
+	var aLi_1 = oL[a].getElementsByTagName("li");
+	for(var i=0;i<aLi_1.length;i++){
+		aLi_1[i].onmouseover = function (){
+			this.getElementsByTagName("h3")[0].className = "hide";
+			this.getElementsByTagName("div")[0].className = "show";
+			}
+		aLi_1[i].onmouseout = function (){
+			this.getElementsByTagName("h3")[0].className = "show";
+			this.getElementsByTagName("div")[0].className = "hide";
+			}
+		}
+	}
+}
+    </script>
+</head>
+
+<body>
+<div class="wrap">
+		<div id="header">
+			<h2>观看排行榜</h2>
+			<ul>
+				<li><a href="#" class="active">每日</a></li>
+				<li><a href="#">每月</a></li>
+				<li><a id="last" href="#">全部</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<ol id="daily">
+				<li>
+					<strong>1</strong>
+					<h3><a href="#">解密：关于地球与人类的一千零一问</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>2</strong>
+					<h3><a href="#">经典传奇：探索全世界重大历史事件</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>3</strong>
+					<h3><a href="#">眼界：展现普通人的曲折命运和动人...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>4</strong>
+					<h3><a href="#">档案（BTV）：惊人事件和传奇背...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>5</strong>
+					<h3><a href="#">世界十最：30个震惊世界的Top...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>6</strong>
+					<h3><a href="#">身边的毛泽东：警卫员解密毛泽东秘...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>7</strong>
+					<h3><a href="#">新电影传奇：每一步电影都有自己的...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>8</strong>
+					<h3><a href="#">档案（上视纪实频道）：解密档案中...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>9</strong>
+					<h3><a href="#">探寻传世国宝的千古传奇</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>10</strong>
+					<h3><a href="#">纪实系列：讲述社会百态，透视事实...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+			</ol>
+			<ol id="monthly">
+				<li>
+					<strong>1</strong>
+					<h3><a href="#">每月 解密：关于地球与人类的一千零一问</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>2</strong>
+					<h3><a href="#">每月 经典传奇：探索全世界重大历史事件</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>3</strong>
+					<h3><a href="#">每月 眼界：展现普通人的曲折命运和动人...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>4</strong>
+					<h3><a href="#">每月 档案（BTV）：惊人事件和传奇背...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>5</strong>
+					<h3><a href="#">每月 世界十最：30个震惊世界的Top...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>6</strong>
+					<h3><a href="#">每月 身边的毛泽东：警卫员解密毛泽东秘...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>7</strong>
+					<h3><a href="#">每月 新电影传奇：每一步电影都有自己的...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>8</strong>
+					<h3><a href="#">每月 档案（上视纪实频道）：解密档案中...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>9</strong>
+					<h3><a href="#">每月 探寻传世国宝的千古传奇</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>10</strong>
+					<h3><a href="#">每月 纪实系列：讲述社会百态，透视事实...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+			</ol>
+			<ol id="all">
+				<li>
+					<strong>1</strong>
+					<h3><a href="#">全部 解密：关于地球与人类的一千零一问</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>2</strong>
+					<h3><a href="#">全部 经典传奇：探索全世界重大历史事件</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>3</strong>
+					<h3><a href="#">全部 眼界：展现普通人的曲折命运和动人...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>4</strong>
+					<h3><a href="#">全部 档案（BTV）：惊人事件和传奇背...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>5</strong>
+					<h3><a href="#">全部 世界十最：30个震惊世界的Top...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>6</strong>
+					<h3><a href="#">全部 身边的毛泽东：警卫员解密毛泽东秘...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>7</strong>
+					<h3><a href="#">全部 新电影传奇：每一步电影都有自己的...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>8</strong>
+					<h3><a href="#">全部 档案（上视纪实频道）：解密档案中...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>9</strong>
+					<h3><a href="#">全部 探寻传世国宝的千古传奇</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+				<li>
+					<strong>10</strong>
+					<h3><a href="#">全部 纪实系列：讲述社会百态，透视事实...</a></h3>
+					<div>
+						<img src="img/record1.jpg">
+						<p>
+							深度解密传奇事件人物，探索未知...
+						</p>
+						<a href="#">播放</a>
+					</div>
+				</li>
+			</ol>
+		</div>
+	</div>
+</div>
+</body>
+</html>

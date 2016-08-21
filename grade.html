@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>百度文库评分思路一</title>
+<style>
+#wrap{ margin:0 auto;height:30px; padding:0 15px;}
+span{ font-size:14px; line-height:30px; margin-right:10px; }
+img{ display:inline-block;width:15px; height:15px; padding-top:10px;}
+strong{ font-size:14px; line-height:30px; margin-left:10px; font-weight:normal; }
+.show{ display:inline;}
+</style>
+<script>
+/*
+第一种思路：
+采用图片地址切换的方式：
+1鼠标移入事件：
+首先引入一个变量num,用来记录鼠标移入星星的位置；前两个移入时星星变化地址为2.png,当移入第三个星星开始，之前的星星全部变成3.png的地址；
+具体方法为给所有的星星加入一个一个索引值，当num<2，利用for循坏将图片地址换掉；当num大于2是同样利用循环换成另一个地址；
+2鼠标移出事件：
+鼠标移除后将所有的图片地址换成1.png，同样利用for循环。
+3.鼠标点击事件：
+鼠标点击时的效果与鼠标移入一样，不同之处在于此时鼠标移出之后依然保持原状；
+此时有个问题：就是点击之后依然会触发鼠标的移出事件；此时应在此处增加一个真假判断；
+当鼠标移入时给一个真。点击后就变成假；而鼠标的移出事件只有在为真的时候才发生
+*/
+window.onload = function (){
+	//鼠标移入时颜色与strong发生变化
+	var img = document.getElementsByTagName('img');
+	var strong = document.getElementsByTagName('strong')[0];
+	var arrText = ['极差','很差','一般','不错','推荐']
+	var num = -1;
+	var flag = true;
+	for(var i=0;i<img.length;i++){
+		//var img = document.getElementsByTagName('img');
+		img[i].index = i;
+		function tab(){
+				function fn1(){
+					for(var j=0;j<num+1;j++){
+					img[j].src = "img/grade3.png";
+					strong.innerHTML = arrText[num];
+					}
+			}	
+				function fn2(){
+					for(var j=0;j<num+1;j++){
+					img[j].src = "img/grade2.png";
+					strong.innerHTML = arrText[num];
+					}
+			}
+				if(0 <=num){
+					fn1();
+					}
+				if(1 <= num){
+					fn1();
+					}
+				if(2 <= num){
+					fn2();
+					}
+				if(3<= num){
+					fn2();
+					}
+				if(4 <= num){
+					fn2();
+					}
+				}
+		
+		img[i].onclick = function(){
+			flag = false;
+			for( var i=0;i<img.length;i++){
+				for(var j=0;j<img.length;j++){
+					img[j].src = "img/grade1.png";
+					}
+				num = this.index;
+				tab();
+				}
+			}	
+		img[i].onmouseover = function (){
+			flag = true;
+			for( var i=0;i<img.length;i++){
+				for(var j=0;j<img.length;j++){
+					img[j].src = "img/grade1.png";
+					}
+				num = this.index;
+				tab();
+			}
+		}
+		img[i].onmouseout = function (){
+			for(var i=0;i<img.length;i++){
+				if (flag){
+					img[i].src ="img/grade1.png";
+					strong.innerHTML = '';
+					}
+				}
+			} 
+	}
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+<span>我的评价:</span>
+<img src="img/grade1.png">
+<img src="img/grade1.png">
+<img src="img/grade1.png">
+<img src="img/grade1.png">
+<img src="img/grade1.png">
+<strong></strong>
+
+</div>
+</body>
+</html>

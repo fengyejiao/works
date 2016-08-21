@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<link href="style/css.css" rel="stylesheet" type="text/css" />
+<script src="script/data.js"></script>
+<script>
+window.addEventListener('load',function(){
+	var oHeader=document.getElementById('header');
+	var oList=document.getElementById('listContent');
+	var oTp=document.getElementById('tips');
+	var oRw=document.getElementById('arrow');
+	var oTpda=document.getElementById('tipsContent');
+	var Rt=parseInt(getComputedStyle(oRw)['top']);
+	var Rw=parseInt(getComputedStyle(oRw)['width']);
+	var Rh=parseInt(getComputedStyle(oRw)['height']);
+	var namels=data.length;
+	var num=0;var oUlda=document.createElement('ul');
+	var oH2=document.createElement('h2');
+	oTpda.appendChild(oH2);
+	oTpda.appendChild(oUlda);
+	var arrda=[['<span style="font-weight:bold;">职位：</span>','position'],['<span style="font-weight:bold;">招聘人数：</span>','recruitingNumbers'],['<span style="font-weight:bold;">工作地点：</span>','workingLocation'],['<span style="font-weight:bold;">工作经历：</span>','workExperience'],['<span style="font-weight:bold;">学历：</span>','education'],['<span style="font-weight:bold;">薪资：</span>','wage']];
+	var dals=arrda.length;
+	
+	//弹出框
+	for(var t=0;t<dals;t++){
+		var oLida=document.createElement('li');
+		oLida.setAttribute('class','col');
+		oUlda.appendChild(oLida);};
+		for(var a=0;a<namels;a++){
+			var oLiName=document.createElement('li');
+			var oLiList=document.createElement('ul');
+			oLiList.setAttribute('class','list');
+			oLiList.style.display='none';
+			oLiName.innerHTML=data[a]['name'];
+			oHeader.appendChild(oLiName);
+			oList.appendChild(oLiList);
+			oHeader.children[a].index=a;
+			oHeader.children[a].addEventListener('mousedown',function(e){
+				num=this.index;
+				for(var a1=0;a1<namels;a1++){
+					oHeader.children[a1].setAttribute('class','');
+					oList.children[a1].style.display='none';};
+					this.setAttribute('class','focus');
+					oList.children[this.index].style.display='block';
+					e.preventDefault();});
+			var listls=data[a]['list'].length;
+			//alert(listls)
+			for(var a2=0;a2<listls;a2++){
+				var oLis=document.createElement('li');
+				var oA=document.createElement('a');
+				oA.href='javascript:;';
+				oA.innerHTML=data[a]['list'][a2]['title'];
+				oLis.appendChild(oA);
+				oLiList.appendChild(oLis);
+				oLis.indexs=a2;
+				oLis.addEventListener('mouseover',function(){
+					oTp.style.left=this.offsetLeft+parseInt(getComputedStyle(this.children[0])['width'])+Rw+'px';
+					//alert(this.offsetTop);
+					oTp.style.top=this.offsetTop-(Rt-Rh/2)+'px';oRw.style.top=Rt+'px';
+					var ym=document.body.scrollTop||document.documentElement.scrollTop;
+					var xz=document.documentElement.clientHeight-parseInt(getComputedStyle(oTp)['height'])+ym-14;
+					if(parseInt(getComputedStyle(oTp)['top'])>xz){
+						oTp.style.top=xz+'px';
+						oRw.style.top=this.offsetTop-xz+Rh/2+'px';};
+						oH2.innerHTML=data[num]['list'][this.indexs]['company'];
+						for(var ad=0;ad<dals;ad++){
+							oTpda.children[1].children[ad].innerHTML=arrda[ad][0]+data[num]['list'][this.indexs][arrda[ad][1]];};
+							oTp.style.display='block';});
+				oLis.addEventListener('mouseout',function(){
+					oTp.style.display='none';});
+				oTp.addEventListener('mouseover',function(){
+					this.style.display='block';});
+				oTp.addEventListener('mouseout',function(){
+					this.style.display='none';});
+					};
+					};
+				oHeader.children[0].setAttribute('class','focus');oList.children[0].style.display='block';});
+
+
+</script>
+
+</head>
+
+<body>
+	<div id="container">
+		<ul id="header"></ul>
+		
+		<div id="listContent"></div>
+	</div>
+	
+	<div id="tips">
+		<span id="arrow"></span>
+        <div id="tipsContent"></div>
+	</div>
+</body>
+</html>

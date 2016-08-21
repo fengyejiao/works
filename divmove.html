@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+div{ width:100px; height:100px; position:absolute; left:10px;top:50px; background-color:#990;}
+</style>
+
+<script>
+window.onload = function (){
+var btn1= document.getElementById('btn1');
+var btn2= document.getElementById('btn2');
+var div = document.getElementById('div1');
+var num = 0;
+var arrbg = ['#990','#993','#996','#999','#99c','#99f']
+
+
+btn1.onclick = function (){
+	tab( div,'left',25,800,function (){
+		tab(div,'top',25,500)
+		})
+	}
+btn2.onclick = function (){
+	tab( div,'left',-25,10,function (){
+		tab(div,'top',-25,50)
+		})
+	}
+div.onmouseover = function (){
+	clearInterval (div.timer)
+	//div.style.left = parseInt(getStyle ( div, 'left' ))+'px';
+	//div.style.top = parseInt(getStyle ( div, 'top' ))+'px';
+	}
+ function tab( obj,arrt,dis,target,endFn){
+		/*clearInterval( timer );
+	
+	timer = setInterval(function () {
+		num++;
+		var speed = parseInt(getStyle( div, 'left' )) + 12;			// 步长
+		
+		if ( speed > 800 ) {
+			speed = 800;
+		}
+		if(num ==arrbg.length){num = 0;}
+		
+		div.style.left = speed + 'px';
+		div.style.backgroundColor = arrbg[num];
+		if ( speed == 800 ) {
+			clearInterval( timer );
+		}
+		
+	}, 100);*/
+		clearInterval (obj.timer);
+	obj.timer = setInterval (function (){
+		num++;
+		if(num ==arrbg.length){num = 0;}
+		var oLeft  = parseInt(getStyle ( obj, arrt )) + dis;
+		
+		if( oLeft > target && dis >0){
+			oLeft = target;
+			}
+		if( oLeft < target && dis <0){
+			oLeft = target;
+			}
+		obj.style[arrt] = oLeft + 'px';
+		obj.style.backgroundColor = arrbg[num]; 
+		if(oLeft == target){
+			clearInterval (obj.timer)
+			endFn && endFn();
+			}
+		},100)
+	}
+	function getStyle ( obj, attr ) { return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr]; }
+}
+
+</script>
+</head>
+
+<body>
+<input id="btn1" type="button" value="向前移动">
+<input id="btn2" type="button" value="向后移动">
+<div id="div1"></div>
+</body>
+</html>

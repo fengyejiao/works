@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+#wrap{width:610px; position:relative;}
+li{ width:50px; height:50px; border:1px solid #000; position:absolute; font-size:30px; line-height:50px; text-align:center;list-style:none; background:}
+</style>
+
+</head>
+
+<body>
+<input id="btn" type="button" value="自动生成100个li">
+<ul id="wrap">
+<!--<li style="left:0px;top:0px;background:#fcf;">1</li>-->
+</ul>
+<script>
+var oUl = document.getElementById('wrap');
+var aLi = document.getElementsByTagName('li');
+var oBtn = document.getElementById('btn');
+var l = 0;
+var t = 0;
+var str = '';
+
+var arrBg = ['#f00','#ff0','#00f','#0f0','#f00','#ff0','#00f','#0f0','#f00','#ff0','#00f','#0f0'];
+
+oBtn.onclick = function (){
+	for(var j=0;j<10;j++){
+		if(j ==0 ){
+	for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i]+';">'+j+i+'</li>';
+			}
+		}
+		if(j ==1){
+			for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i+2]+';">'+j+i+'</li>';
+			}
+		}
+		if(j ==2){
+			for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i]+';">'+j+i+'</li>';
+			}
+		}
+		if(j == 3){
+			for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i+2]+';">'+j+i+'</li>';
+			}
+		}
+		if(j ==4 ){
+			for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i]+';">'+j+i+'</li>';
+			}
+		}
+		if(j == 5){
+			for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i+2]+';">'+j+i+'</li>';
+			}
+		}
+		if(j == 6){
+			for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i]+';">'+j+i+'</li>';
+			}
+		}
+		if(j == 7){
+			for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i+2]+';">'+j+i+'</li>';
+			}
+		}
+		if(j == 8){
+			for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i]+';">'+j+i+'</li>';
+			}
+		}
+		if(j == 9){
+			for(var i=0;i<10;i++){
+		l = 8 + i*58;
+		t = j*60;
+		str += '<li style="left:'+l+'px;top:'+t+'px;background:'+arrBg[i+2]+';">'+j+i+'</li>';
+			}
+		}
+		
+		oUl.innerHTML = str;
+
+	}
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+ul,li,p{margin:0px;padding:0px;}
+li{ list-style:none;}
+input{padding:0px;}
+a{ text-decoration:none;}
+#wrap{ width:237px; height:476px; background:url(img/phone.jpg); position:relative;}
+#content{width:188px; height:333px; position:absolute;left:25px;top:71px;}
+#ul{width:188px;height:294px;border-bottom: 1px solid #c7cbca;overflow: auto;}
+.F{height: 33px;padding-top:5px;width:188px;}
+#pic{float:left;display:inline-block;width:24px; height:24px; border:1px solid #c7cbac; border-radius:3px;margin-left:3px;}
+#text{ width:111px;margin-left:3px;font-size:12px;line-height:24px; border:1px solid #c7cbac; border-radius:3px;float:left;}
+#btn{float:left;font-size:16px;margin-left:3px; background-color: #fff; color:#979596;border:none; line-height:24px;}
+.clear:after{content:'';display:block;clear:both;}
+.Fl img{float:left;}
+.Fl p{float:left;margin-left: 5px;line-height: 24px;max-width: 140px;background:#0FC;}
+.Fr img{float:right;}
+.Fr p{float:right;margin-left: 5px;line-height: 24px;max-width: 140px; background:#F63;}
+.Fl,Fr{margin-bottom:5px;}
+</style>
+<script>
+window.onload = function (){
+	var Img = document.getElementById('pic1');
+	var Btn = document.getElementById('btn');
+	var Ul = document.getElementById('ul');
+	var Text = document.getElementById('text')
+	var onOff = true;
+	Img.onclick = function(){
+		if(onOff){
+			Img.src = 'img/inf2.png';
+			}else{
+				Img.src = 'img/inf1.png';
+				}
+				onOff = !onOff;
+		};
+	Btn.onclick = function (){
+		if(onOff){
+			Ul.innerHTML = '<li class="Fl clear"><img src="img/inf1.png"/><p>'+Text.value+'</p></li>'+Ul.innerHTML;
+			Text.value = '';
+		}else{Ul.innerHTML = '<li class="Fr clear"><img src="img/inf2.png"/><p>'+Text.value+'</p></li>'+Ul.innerHTML;
+				Text.value = '';}
+			}
+		
+	}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+<div id="content">
+<ul id="ul" class="clear">
+<!--<li class="Fl">
+<img src="img/1.png"/>
+<p>第二个</p>
+</li>
+<li class="Fr">
+<img src="img/1.png"/>
+<p>第二个</p>
+</li>-->
+</ul>
+<form class="F clear">
+ <a href="#" id="pic">
+ <img src="img/inf1.png" id="pic1">
+ </a>
+ <input id="text" type="text" value="">
+ <input id="btn" type="button" value="发送">
+</form>
+</div>
+</div>
+</body>
+</html>

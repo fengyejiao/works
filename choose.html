@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+ul,p{ margin:0; padding:0;}
+li{ list-style:none;}
+#wrap{ width:200px;}
+#content{ width:200px;}
+li{ height:24px; margin-bottom:1px;}
+li input{ float:left;}
+li p { width:100px; font-size:14px; line-height:24px; margin-right:10px;float:left; margin-left:10px;}
+
+</style> 
+<script>
+window.onload = function (){
+var ul = document.getElementById('content');
+var aLi = ul.getElementsByTagName('li');
+var wrap = document.getElementById('wrap');
+var aInp = wrap.getElementsByTagName('input');
+var a = -1;
+var b =true;
+var arr = ['#ffc','#fcc','#f9c']
+for(var i=0;i<aLi.length;i++){
+	aLi[i].index = i;
+	aInp[i].index = i;
+	aLi[i].style.background = arr[i%arr.length];
+	//鼠标移入改变颜色
+	
+		//实现全选变色操作
+	aInp[aInp.length-1].onclick = function (){
+		
+		for( var i=0;i<aInp.length-1;i++){
+			if(this.checked){
+			aInp[i].checked = true;
+			aLi[i].style.background = 'gray';
+			b = false
+			}else{
+			aInp[i].checked = false;
+			aLi[i].style.background = arr[i%arr.length];
+			b = true
+				}
+			}
+		}
+		//点击选框时变色；但此后鼠标移出和移入仍保持颜色不变
+		aInp[i].onclick = function (){
+			a = this.index;
+			for( var i=0;i<aInp.length-1;i++){
+			if(this.checked){
+				aLi[this.index].style.background = 'gray';
+				}else{
+				aLi[this.index].style.background = arr[this.index%arr.length];}
+			}
+		}
+		//鼠标移入改变颜色
+	aLi[i].onmouseover = function (){
+		for( var i=0;i<aInp.length-1;i++){
+		if(this.index != a && b){
+		this.style.background = 'gray';}
+		}
+	};
+		//鼠标移出时恢复到原来颜色
+		aLi[i].onmouseout = function (){
+			for( var i=0;i<aInp.length-1;i++){
+		if(this.index != a && b){
+			this.style.background = arr[this.index%arr.length];}
+		}
+		};
+	}	
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+	<ul id="content">
+    	<li>
+        <input type="checkbox">
+        <p>私奔</p>
+        <span>abcd</span>
+        </li>
+    	<li>
+        <input type="checkbox">
+        <p>私奔</p>
+        <span>abcd</span>
+        </li>
+    	<li>
+        <input type="checkbox">
+        <p>私奔</p>
+        <span>abcd</span>
+        </li>
+    	<li>
+        <input type="checkbox">
+        <p>私奔</p>
+        <span>abcd</span>
+        </li>
+    	<li>
+        <input type="checkbox">
+        <p>私奔</p>
+        <span>abcd</span>
+        </li>
+    	<li>
+        <input type="checkbox">
+        <p>私奔</p>
+        <span>abcd</span>
+        </li>
+    	<li>
+        <input type="checkbox">
+        <p>私奔</p>
+        <span>abcd</span>
+        </li>
+    	<li>
+        <input type="checkbox">
+        <p>私奔</p>
+        <span>abcd</span>
+        </li>
+    </ul>
+    <input type="checkbox" >全选
+</div>
+</body>
+</html>

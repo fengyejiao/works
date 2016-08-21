@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>随机图片滚动</title>
+<style>
+body,ul{ margin:0; padding:0;}
+#wrap{ margin:10px auto; width:250px; height:500px;}
+ul{ width:250px; height:500px;}
+li{ list-style:none; width:125px; height:50px;float:left; position:relative;overflow:hidden;}
+img{ width:125px; height:100px; border:none; vertical-align:top; position:absolute;left:0;top:0;}
+</style>
+<script src="script/exe.js"></script>
+<script>
+window.onload = function (){
+ lis = document.getElementsByTagName('li');
+ imgs = document.getElementsByTagName('img');
+ var arr = [0,1,2,3,4,5,6,7,8,9]
+ setInterval( function (){
+	// arr = [0,1,2,3,4,5,6,7,8,9]
+	 var newarr = arr.sort(function(a,b){
+		 return Math.random()-0.5;
+		 })
+     if(parseInt (getStyle ( imgs[newarr[0]], 'top' )) == -50){
+		 setTimeout(function (){
+			 doMove(imgs[newarr[0]],'top',5,0,10);
+			 },1000)
+		 }else{
+			doMove(imgs[newarr[0]],'top',5,-50,10); 
+			 }
+	 if(parseInt (getStyle ( imgs[newarr[2]], 'top' )) == -50){
+		setTimeout(function (){
+			 doMove(imgs[newarr[2]],'top',5,0,10);
+			 },1000)
+		 }else{
+			doMove(imgs[newarr[2]],'top',5,-50,10); 
+			 }
+	 if(parseInt (getStyle ( imgs[newarr[6]], 'top' )) == -50){
+		 setTimeout(function (){
+			 doMove(imgs[newarr[6]],'top',5,0,10);
+			 },1000)
+		 }else{
+			doMove(imgs[newarr[6]],'top',5,-50,10); 
+			 }
+	 if(parseInt (getStyle ( imgs[newarr[8]], 'top' )) == -50){
+		setTimeout(function (){
+			 doMove(imgs[newarr[8]],'top',5,0 ,10);
+			 },1000)
+		 }else{
+			doMove(imgs[newarr[8]],'top',5,-50,10); 
+			 }
+	 },2000)	
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+ <ul>
+  <li><img src="img/1.jpg"></li>
+  <li><img src="img/2.jpg"></li>
+  <li><img src="img/3.jpg"></li>
+  <li><img src="img/4.jpg"></li>
+  <li><img src="img/5.jpg"></li>
+  <li><img src="img/6.jpg"></li>
+  <li><img src="img/7.jpg"></li>
+  <li><img src="img/8.jpg"></li>
+  <li><img src="img/tao3.jpg"></li>
+  <li><img src="img/tao4.jpg"></li>
+ </ul>
+</div>
+</body>
+</html>

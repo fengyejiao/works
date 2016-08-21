@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body,p,ul{ margin:0; padding:0;}
+li{ list-style:none;}
+body{ background:#000;}
+#wrap{ width:326px; height:220px; margin:0 auto; position:relative;}
+#wrap #img{ width:326px; height:220px;}
+#wrap span,#wrap p{ width:326px; height:30px; font-size:20px; line-height:30px; text-align:center; position:absolute; left:0; background:#999; filter:alpha(opacity:60); opacity:0.6; color:#fff;}
+#wrap span{ top:0;}
+#wrap p{ bottom:0;}
+#wrap ul{ position:absolute;left:113px; bottom:-20px; width:100px;}
+#wrap li{ width:10px; height:10px; background:#CCC; margin-right:10px;float:left; position:relative;}
+#wrap a{width:40px;font-size:20px; line-height:40px; text-align:center; position:absolute; top:90px; background:#99F; filter:alpha(opacity:60); opacity:0.6; text-decoration:none; color:#fff;}
+#prev{ left:0;}
+#next{ right:0;}
+#wrap a:hover{ background:#90F;}
+#wrap .active{ background:#FF6;}
+#wrap .lidiv{ width:110px; height:70px; position:absolute;left:-10px;top:-85px; border:5px solid #fff; display:none;}
+#wrap img{ width:110px; height:70px;}
+</style>
+<script>
+window.onload = function (){
+/*要实现的操作：
+1.点击图片左右图标时实现图片顺序切换；
+2.鼠标移入li时实现图片预览；移出时消失；点击时img中的图片相应切换；
+3.点击li相应切换后再次点击图片左右图标时也按顺序切换；
+*/
+//找元素
+var oDiv = document.getElementById('wrap');
+var oImg = document.getElementById('img');
+var oSpan = oDiv.getElementsByTagName('span')[0];
+var oP = oDiv.getElementsByTagName('p')[0];
+var oPrev = document.getElementById('prev');
+var oNext = document.getElementById('next');
+var aLi = oDiv.getElementsByTagName('li');
+var aDiv = oDiv.getElementsByTagName('div');
+
+var arrUrl = ['img/thum5.jpg','img/thum6.jpg','img/thum7.jpg','img/thum8.jpg','img/thum9.jpg'];
+var arrText = ['故宫','盐海','街道','枫叶','雪景'];
+var num = 0;
+//初始化
+function abc(){
+oSpan.innerHTML = num +1 +'/' + arrUrl.length;
+oImg.src = arrUrl[num];
+oP.innerHTML = arrText[num];
+aLi[num].className = 'active';
+}
+abc();
+//实现操作1
+	oNext.onclick = function (){
+	num++;
+	if(num == arrUrl.length){num =0;}
+	oSpan.innerHTML = num +1 +'/' + arrUrl.length;
+	oImg.src = arrUrl[num];
+	oP.innerHTML = arrText[num];
+	for( var i=0;i<arrUrl.length;i++){
+		if(i !=num){aLi[i].className = '';}
+		aLi[num].className = 'active'}
+	}
+	oPrev.onclick = function (){
+	num--;
+	if(num == -1){num =arrUrl.length-1;}
+	oSpan.innerHTML = num +1 +'/' + arrUrl.length;
+	oImg.src = arrUrl[num];
+	oP.innerHTML = arrText[num];
+	for( var i=0;i<arrUrl.length;i++){
+		if(i !=num){aLi[i].className = '';}
+		aLi[num].className = 'active'}
+	}
+//实现操作2
+	for( var i=0;i<arrUrl.length;i++){
+		aLi[i].index = i;
+		aLi[i].onmouseover = function (){
+			aDiv[this.index].style.display = 'block';
+			}
+		aLi[i].onmouseout = function (){
+			aDiv[this.index].style.display = 'none';
+			}
+//实现操作3
+	aLi[i].onclick = function (){
+		oSpan.innerHTML = this.index+1 +'/' + arrUrl.length;
+		oImg.src = arrUrl[this.index];
+		oP.innerHTML = arrText[this.index];
+		for( var i=0;i<arrUrl.length;i++){
+			if(i != this.index){aLi[i].className = '';}
+			aLi[this.index].className = 'active'}
+		num = this.index;	
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+    <img src=""/ id="img">
+    <a id="prev" href="#"><</a>
+    <a id="next" href="#">></a>
+    <span>图片数量计算中...</span>
+    <p>图片正在加载中...</p>
+    <ul>
+    	<li>
+        <div class="lidiv">
+        <img src="img/thum5.jpg" >
+        </div>
+        </li>
+    	<li>
+        <div class="lidiv">
+        <img src="img/thum6.jpg" >
+        </div>
+        </li>
+    	<li>
+        <div class="lidiv">
+        <img src="img/thum7.jpg" >
+        </div>
+        </li>
+    	<li>
+        <div class="lidiv">
+        <img src="img/thum8.jpg" >
+        </div>
+        </li>
+    	<li>
+        <div class="lidiv">
+        <img src="img/thum9.jpg" >
+        </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

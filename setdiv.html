@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body,dl,dt,dd{margin:0px;padding:0px;}
+a{ text-decoration:none;}
+#wrap{width:735px;height:418px; position:relative;margin:0 auto;}
+#first{font-size:24px;float:left; font-weight:bold;}
+#first_dd{float:left; position:relative;}
+#a{display:block;width:100px;background:red;font-size:12px;line-height:40px;text-align:center;color:#fff;}
+ul{margin:0;padding:0;}
+li{list-style:none;}
+#ul{width:267px;border:20px solid #9c949c;padding-left:33px;position:absolute;left:65px;top:89px;display:none;}
+#ul p{font-size:16px;}
+span{display:inline-block;width:34px;line-height:30px;border:1px solid #c0c0c0;text-align:center;margin-right:5px;background:#efefef;}
+.commen{width:36px;line-height:32px;}
+#red{ background-color:#0F0;color:#FFF}
+#yellow{ background-color:#FC3; color:#F96;}
+#blue{ background-color:#06F; color:#FFF}
+#last{margin-left:55px;margin-bottom:20px;}
+#last span{display:inline-block;width:60px;font-size:14px;line-height:30px;text-align:center;margin-right:4px;background-color:#036;color:
+#FFF;}
+#div{width:100px;height:100px;border:4px solid #000; position:absolute;left:0; top:60px;}
+</style>
+</head>
+
+<body>
+<div id="wrap">
+	<dl>
+    	<dt id="first">请为下面DIV设置样式：
+        	<dd id="first_dd"><a href="#" id="a">点击设置</a>
+            	 <ul id="ul">
+                    <li>
+                        <p>请选择背景色：<span id="red" class="commen">红</span><span id="yellow" class="commen">黄</span><span id="blue" class="commen">蓝</span>
+                    </li>
+                    <li>
+                        <p>请选宽度(px)：<span id="width2">200</span><span id="width3">300</span><span id="width4">400</span>
+                    </li>
+                    <li>
+                        <p>请选长度(px)：<span id="length2">200</span><span id="length3">300</span><span id="length4">400</span>
+                    </li>
+                    <li id="last">
+                        <span id="return1">恢复</span><span id="sure1">确定</span>
+                    </li>
+                </ul>
+            </dd>
+        </dt>
+    </dl>
+    <div id="div"></div>
+</div>
+<script>
+
+var a = document.getElementById('a')
+
+var red_span = document.getElementById('red');
+var yellow_span = document.getElementById('yellow');
+var blue_span = document.getElementById('blue');
+var div1 = document.getElementById('div');
+
+var width2 = document.getElementById('width2');
+var width3 = document.getElementById('width3');
+var width4 = document.getElementById('width4');
+
+var length2 = document.getElementById('length2');
+var length3 = document.getElementById('length3');
+var length4 = document.getElementById('length4');
+
+var R1 = document.getElementById('return1');
+
+var S1 = document.getElementById('sure1')
+
+a.onclick = show;
+
+red_span.onclick = red;
+red_span.onmouseover = red_over;
+red_span.onmouseout = red_none; 
+
+yellow_span.onclick = yellow;
+yellow_span.onmouseover = yellow_over;
+yellow_span.onmouseout = yellow_none;
+
+blue_span.onclick = blue;
+blue_span.onmouseover = blue_over;
+blue_span.onmouseout = blue_none;
+
+width2.onclick = width_2;
+width2.onmouseover = width_22;
+width2.onmouseout = width_222;
+
+width3.onclick = width_3;
+width3.onmouseover = width_33;
+width3.onmouseout = width_333;
+
+width4.onclick = width_4;
+width4.onmouseover = width_44;
+width4.onmouseout = width_444;
+
+length2.onclick = length_2;
+length2.onmouseover = length_22;
+length2.onmouseout = length_222;
+
+length3.onclick = length_3;
+length3.onmouseover = length_33;
+length3.onmouseout = length_333;
+
+length4.onclick = length_4;
+length4.onmouseover = length_44;
+length4.onmouseout = length_444;
+
+R1.onclick = R_1;
+R1.onmouseover = R_11;
+R1.onmouseout = R_111;
+
+S1.onclick = S_1;
+S1.onmouseover = S_11;
+S1.onmouseout = S_111;
+ 
+function show(){
+	document.getElementById('ul').style.display = 'block';
+	document.getElementById('wrap').style.background = '#c0c0c0';
+	document.getElementById('wrap').style.opacity = '0.8';	
+	}
+function red(){
+	red_span.style.background = 'red';
+	div1.style.background = 'red';
+	}
+function red_none(){
+	red_span.style.background = '#0F0';
+	}
+function red_over(){
+	red_span.style.background = 'red'
+	}
+	
+function yellow(){
+	yellow_span.style.background = 'yellow';
+	div1.style.background = 'yellow';
+	}
+function yellow_none(){
+	yellow_span.style.background = '#fc3';
+	}
+function yellow_over(){
+	yellow_span.style.background = 'yellow';
+	}
+
+function blue(){
+	blue_span.style.background = 'blue';
+	div1.style.background = 'blue';
+	}
+function blue_none(){
+	blue_span.style.background = '#06f';
+	}
+function blue_over(){
+	blue_span.style.background = 'blue';
+	}
+
+function width_2(){
+	div1.style.width = '200px';
+	width2.style.background = '#f90';
+	}
+function width_22(){
+	width2.style.background = '#f90';
+	}
+function width_222(){
+	width2.style.background = '#efefef';
+	}
+	
+function width_3(){
+	div1.style.width = '300px';
+	width3.style.background = '#f90';
+	}
+function width_33(){
+	width3.style.background = '#f90';
+	}
+function width_333(){
+	width3.style.background = '#efefef';
+	}
+
+function width_4(){
+	div1.style.width = '400px';
+	width4.style.background = '#f90';
+	}
+function width_44(){
+	width4.style.background = '#f90';
+	}
+function width_444(){
+	width4.style.background = '#efefef';
+	}
+
+function length_2(){
+	div1.style.height = '200px';
+	length2.style.background = '#f90';
+	}
+function length_22(){
+	length2.style.background = '#f90';
+	}
+function length_222(){
+	length2.style.background = '#efefef';
+	}
+
+function length_3(){
+	div1.style.height = '300px';
+	length3.style.background = '#f90';
+	}
+function length_33(){
+	length3.style.background = '#f90';
+	}
+function length_333(){
+	length3.style.background = '#efefef';
+	}
+	
+function length_4(){
+	div1.style.height = '400px';
+	length4.style.background = '#f90';
+	}
+function length_44(){
+	length4.style.background = '#f90';
+	}
+function length_444(){
+	length4.style.background = '#efefef';
+	}
+
+function R_1(){
+	R1.style.border = '1px solid #fc3';
+	div1.style.background = 'none';
+	div1.style.width = '100px';
+	div1.style.height = '100px';
+	}
+function R_11(){
+	R1.style.border = '1px solid #fc3';
+	}
+function R_111(){
+	R1.style.border = 'none';
+	}
+
+function S_1(){
+	S1.style.border = '1px solid #fc3';
+	document.getElementById('ul').style.display = 'none';
+	document.getElementById('wrap').style.background = 'none';
+	}
+function R_11(){
+	S1.style.border = '1px solid #fc3';
+	}
+function R_111(){
+	S1.style.border = 'none';
+	}
+
+</script>
+</body>
+</html>

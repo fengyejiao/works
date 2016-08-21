@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body,ul{ margin:0; padding:0;}
+li{ list-style:none;}
+a{ text-decoration:none;}
+#wrap{ width:960px; height:324px; border:1px solid #c6c6c6; margin:10px auto 0;}
+#wrap_left{ width:150px; float:left; background:#e7e7e7;}
+#wrap_left li{ border-bottom:1px solid #c6c6c6;}
+#wrap_left li a{ color:#000; width:150px; height:80px; display:block;font-size:14px; line-height:80px; text-align:center;}
+#wrap_left li a:hover{ background:#F00; color:#FFF;}
+#wrap_left .active{ background:#fff;}
+.wrap_right{float:left; width:810px;height:324px; position:relative; display:none;}
+.wrap_right img{ width:810px;height:324px;}
+#right_bottom{ width:810px; height:30px; position:absolute; left:0; bottom:0;}
+#right_bottom li{float:left;margin-left:1px; height:30px;line-height:30px; text-align:center;background:#adada6; opacity:0.6; filter:alpha(opacity=60); font-size:14px;color:#FFF;}
+#right_bottom .active1{ background:#F0F;}
+#right .hide{ display:none;}
+#right .show{ display:block;}
+</style>
+<script>
+window.onload = function (){
+	var right = document.getElementById('right');
+	var right_div = right.getElementsByTagName('div');
+	var arrurl = [
+		['img/jm1.jpg','img/jm2.jpg','img/jm3.jpg'],
+		['img/jm4.jpg','img/jm5.jpg','img/jm6.jpg','img/jm7.jpg'],
+		['img/jm9.jpg','img/jm10.jpg','img/jm9.jpg','img/jm8.jpg','img/jm10.jpg'],
+		['img/jm8.jpg','img/jm11.jpg','img/jm8.jpg','img/jm11.jpg']
+		]
+	//初始化
+	right_div[0].className = 'show wrap_right';
+	var first_ul = right_div[0].getElementsByTagName('ul')[0];
+	var first_li = first_ul.getElementsByTagName('li');
+	var first_img = right_div[0].getElementsByTagName('img')[0];
+	first_img.src = arrurl[0][0];
+	first_li[0].className = 'active1';
+	for (var i=0;i<first_li.length;i++){
+		var a = 810/first_li.length - 1;
+		first_li[i].style.width = a + 'px';
+		}
+	//点击第一个选项卡进行切换
+	var left_ul = document.getElementById('wrap_left');
+	var aLi = left_ul.getElementsByTagName('li');
+	
+	for(var i=0;i<aLi.length;i++){
+		tab(i);
+		}
+	
+	function tab(b){
+	aLi[b].onclick = function (){
+		for(var j=0;j<right_div.length;j++){
+			right_div[j].className = 'hide wrap_right'; 
+			}
+		right_div[b].className = 'show wrap_right';
+		for(var z=0;z<aLi.length;z++){
+			aLi[z].className = '';
+			}
+		aLi[b].className = 'active';
+		var first_ul = right_div[b].getElementsByTagName('ul')[0];
+		var first_li = first_ul.getElementsByTagName('li');
+		var first_img = right_div[b].getElementsByTagName('img')[0];
+		first_img.src = arrurl[b][0];
+		first_li[0].className = 'active1';
+		for (var i=0;i<first_li.length;i++){
+			var a = 810/first_li.length - 1;
+			first_li[i].style.width = a + 'px';
+				}
+		//子选项卡的切换
+		for( var k= 0;k<first_li.length;k++){
+			first_li[k].index = k;
+			first_li[k].onclick = function (){
+				for(var s=0;s<first_li.length;s++){
+					first_li[s].className = '';
+					}
+				this.className = 'active1';
+				first_img.src = arrurl[b][this.index];
+				}
+			}
+		}
+	}
+	
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+	<ul id="wrap_left">
+    	<li class="active"><a href="#">最新团购</a></li>
+    	<li><a href="#">商城特惠</a></li>
+    	<li><a href="#">名品特卖</a></li>
+    	<li><a href="#">缤纷活动</a></li>
+    </ul>
+    <div id="right">
+        <div class="wrap_right">
+            <img src="">
+            <ul id="right_bottom">
+                <li>雅诗兰黛护完美唇膏</li>
+				<li>雅诗兰黛花漾唇膏</li>
+				<li>倩碧卓越润肤乳</li>
+            </ul>
+        </div>
+        <div class="wrap_right">
+            <img src="">
+            <ul id="right_bottom">
+                <li>肌研满150减30</li>
+				<li>高性价比2.8折起</li>
+				<li>贝德玛满225送50</li>
+				<li>吃出健康生态2.8折起</li>
+            </ul>
+        </div>
+        <div class="wrap_right">
+            <img src="">
+            <ul id="right_bottom">
+                <li>艾格全场1.5折起</li>
+				<li>伊芙丽全场2.5折起</li>
+				<li>伊米妮全场3折起</li>
+				<li>小熊电器全场1折起</li>
+				<li>贝缇卡全场1.5折起</li>
+            </ul>
+        </div>
+        <div class="wrap_right">
+            <img src="">
+            <ul id="right_bottom">
+                <li>万达2小时欢唱券</li>
+				<li>支付宝下单立减</li>
+				<li>红包乐翻天</li>
+				<li>免费领小样</li>
+            </ul>
+        </div>
+	</div>
+</div>
+</body>
+</html>

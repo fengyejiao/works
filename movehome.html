@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body,ul,p,{ margin:0; padding:0;}
+#txt{border:none;float:left;color:#fff; background:#0CF;width:300px; height:320px; margin:10px;font-size:16px; line-height:22px; padding-top:5px;}
+li{ list-style:none; float:left; width:6px; height:6px; margin-right:2px;} 
+#wrap{ margin:0 auto; border:5px solid #CCC; width:750px; height:350px; padding:5px;}
+.wrapR{width:300px; height:320px; margin:10px;font-size:16px; line-height:22px; padding-top:5px;}
+.wrapR{ float:right; background:#9F0;color:#F06;}
+#wrapC{width:105px;height:150px; background:#C3F; float:left; margin-top:10px;}
+#wrapC p{ width:90px; text-align:center;color:#fff; line-height:30px; font-size:16px; border:1px solid #000; margin:10px auto; background:#F00;}
+strong{ display:inline-block;width:105px; margin-top:10px; font-size:16px; line-height:30px; text-align:center; color:#fff;}
+ul{ margin-top:20px; width:105px; height:10px; padding-left:10px;display:none;}
+</style>
+<script>
+function getStyle ( obj, attr ) { return obj.currentStyle?obj.currentStyle[attr] : getComputedStyle( obj )[attr]; }
+window.onload = function (){
+ var wrap = document.getElementById('wrap');
+ var wcen = document.getElementById('wrapC');
+ var wcp = wcen.getElementsByTagName('p')[0];
+ var strong = wcen.getElementsByTagName('strong')[0];
+ var ul = wcen.getElementsByTagName('ul')[0];
+ var lis = ul.getElementsByTagName('li');
+ var divs = wrap.getElementsByTagName('div');
+ var txt = document.getElementById('txt');
+ var Rp = divs[1].getElementsByTagName('p')[0];
+ var timer = null;
+ var num = 0;
+ //点击文字右移进度条出现切发生变化,计算出字数
+ wcp.onclick = function (){
+  var lcon = txt.value;
+  var rcon = Rp.innerHTML;
+  var a = 0;
+  ul.style.display = 'block';
+  clearInterval(timer)
+  timer = setInterval(function(){
+	  //strong数值
+	  strong.innerHTML = a+'/'+lcon.length;
+	   //strong.innerHTML = a;
+	  //进度条
+	  for( var i=0;i<lis.length;i++){
+		  lis[i].style.background = '#FF6';
+		  }
+	  lis[num].style.background = '#F90';
+	  num++;
+	  if(num == 10){num = 0;}
+	  //左边文字组件减少
+	  txt.value = lcon.substring(a,lcon.length)
+	   //右边文字增加
+	  Rp.innerHTML = lcon.substring(0 ,a)
+	  if(a == lcon.length){
+		   clearInterval(timer)
+		   ul.style.display = 'none';
+		  }
+		 a++;
+	 
+	  /*if(Rp.innerHTML.length === Lp.innerHTML.length){
+		  clearInterval(timer)
+		  }*/
+	  },50)
+	  
+ }
+
+
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+<textarea id="txt">新华社北京8月20日电全国卫生与健康大会19日至20日在京召开。中共中央总书记、国家主席、中央军委主席习近平出席会议并发表重要讲话。他强调，没有全民健康，就没有全面小康。要把人民健康放在优先发展的战略地位，以普及健康生活、优化健康服务、完善健康保障、建设健康环境、发展健康产业为重点，加快推进健康中国建设，努力全方位、全周期保障人民健康，为实现“两个一百年”奋斗目标、实现中华民族伟大复兴的中国梦打下坚实健康基础位学员。</textarea>
+ <div id="wrapC">
+ <p>文字右移</p>
+ <strong></strong>
+ <ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+ </ul>
+ </div>
+ <div class="wrapR">
+  <p></p>
+ </div>
+</div>
+</body>
+</html>

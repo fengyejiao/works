@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+ul,p,input{ margin:0; padding:0;}
+li{ list-style:none;}
+a{ text-decoration:none;}
+#head{ width:600px; background:#096; font-size:14px; line-height:24px; color:#fff; padding-left:20px;}
+ul{ width:600px;}
+ul li{ width:100%; height:50px; line-height:40px; font-size:16px; border-bottom:1px solid #066; }
+p{ line-height:50px; font-size:16px; text-indent:20px; color:#006; margin-right:20px;float:left;}
+.li_a{float:left;}
+.li_a img{ vertical-align:center; position:relative;left:0;top:9px;}
+li div{ display:none;}
+input{margin-left:20px; height:34px; font-size:14px; line-height:32px; color:#0CC; margin-top:5px;}
+span{ display:inline-block; width:40px; text-align:center;}
+span a{color:#000;display:inline-block; width:40px; text-align:center;}
+span a:hover{ background:#0FF;}
+#wrap .hide{ display:none;}
+#wrap .show{ display:block;}
+</style>
+<script>
+window.onload = function (){
+	var con = document.getElementById('content');
+	var aLi = con.getElementsByTagName('li');
+	var img = con.getElementsByTagName('img');
+
+	//点击图片进行编辑
+	for(var i=0;i<img.length;i++){
+		show(i);
+		}
+	
+	function show(a){
+	img[a].onclick = function (){
+		var p = aLi[a].getElementsByTagName('p')[0];
+		var a_img = aLi[a].getElementsByTagName('img')[0];
+		var div = aLi[a].getElementsByTagName('div')[0];
+		p.className = "hide";
+		a_img.className = "hide";
+		div.className = "show";
+		}
+	}
+	//点击保存替换原来值
+	for (var i=0;i<aLi.length;i++){show1(i);}
+	
+	function show1(b){
+	var spans = aLi[b].getElementsByTagName('span');
+	var inp = aLi[b].getElementsByTagName('input')[0];
+	var p = aLi[b].getElementsByTagName('p')[0];
+	var a_img = aLi[b].getElementsByTagName('img')[0];
+	var div = aLi[b].getElementsByTagName('div')[0];
+	spans[0].onclick = function (){
+		p.innerHTML = inp.value;
+		p.className = "show";
+		a_img.className = "show";
+		div.className = "hide";
+		}
+	spans[1].onclick = function (){
+		p.className = "show";
+		a_img.className = "show";
+		div.className = "hide";
+		}
+	}
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+	<div id="head">分类名称</div>
+    <ul id="content">
+    	<li>
+        	<p>练习练习练习练习练习练习练习</p>
+            <a class="li_a" href="javascript:;" ><img src="img/pen.jpg"></a>
+            <div>
+            	<input type="text" value="">
+                <span><a href="#">保存</a></span>
+                <span><a href="#">取消</a></span>
+            </div>
+        </li>
+    	<li>
+        	<p>练习练习练习练习练习练习练习</p>
+            <a class="li_a" href="javascript:;" ><img src="img/pen.jpg" alt="点击编辑"></a>
+            <div>
+            	<input type="text" value="">
+                <span><a href="#">保存</a></span>
+                <span><a href="#">取消</a></span>
+            </div>
+        </li>
+    	<li>
+        	<p>练习练习练习练习练习练习练习</p>
+            <a class="li_a" href="javascript:;" ><img src="img/pen.jpg"></a>
+            <div>
+            	<input type="text" value="">
+                <span><a href="#">保存</a></span>
+                <span><a href="#">取消</a></span>
+            </div>
+        </li>
+    	<li>
+        	<p>练习练习练习练习练习练习练习</p>
+            <a class="li_a" href="javascript:;" ><img src="img/pen.jpg"></a>
+            <div>
+            	<input type="text" value="">
+                <span><a href="#">保存</a></span>
+                <span><a href="#">取消</a></span>
+            </div>
+        </li>
+    	<li>
+        	<p>练习练习练习练习练习练习练习</p>
+            <a class="li_a" href="javascript:;" ><img src="img/pen.jpg"></a>
+            <div>
+            	<input type="text" value="">
+                <span><a href="#">保存</a></span>
+                <span><a href="#">取消</a></span>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

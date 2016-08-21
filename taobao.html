@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body,ul{ margin:0; padding:0;}
+li{ list-style:none;}
+img{ border:none;}
+#wrap{ width:300px; margin:10px auto;height:150px; border:1px solid #CCC;}
+#left,#right{ width:50px; height:150px; float:left}
+img{width:200px; height:150px; float:left;}
+#left li,#right li{ height:28px; border:1px solid #CCC; font-size:16px; line-height:28px; text-align:center; width:48px;}
+#wrap .active{ background:#F3F;}
+</style>
+
+</head>
+
+<body>
+<div id="wrap">
+	<ul id="left">
+        <li>第一张</li>
+        <li>第二张</li>
+        <li>第三张</li>
+        <li>第四张</li>
+        <li>第五张</li>
+    </ul>
+    <img src="img/tao1.jpg">
+    <ul id="right">
+        <li>第六张</li>
+        <li>第七张</li>
+        <li>第八张</li>
+        <li>第九张</li>
+        <li>第十张</li>
+    </ul>
+</div>
+<script>
+var wrap = document.getElementById('wrap');
+var ali = wrap.getElementsByTagName('li');
+var img = wrap.getElementsByTagName('img')[0];
+var arrurl = ['img/tao1.jpg','img/tao2.jpg','img/tao3.jpg','img/tao4.jpg','img/thum1.png','img/thum2.png','img/thum3.png','img/thum4.png','img/first-1.png','img/first-2.png']
+var num = 0;
+var a = 0;
+var timer = null;
+ali[0].className = 'active';
+tab();
+function tab(){
+timer = setInterval(function(){
+	/*
+	
+	num++;
+	if(num ==10){num = 0}
+	*/
+	if(num <= 4){num++}else{num--}
+	if( a == 0 && num == 5){
+		num = 9; a = 1;}else if(a == 1 && num == 4)
+		{num =0 ;  a = 0;}
+	for( var i=0;i<ali.length;i++){
+		ali[i].className = '';
+		}
+	ali[num].className = 'active';
+	img.src = arrurl[num];
+	},1000)
+	}
+	for(var i=0;i<ali.length;i++){
+		ali[i].index = i;
+		//var a = this.index;
+		ali[i].onmousedown = function (){
+			clearInterval(timer);
+			num = this.index;
+			if(num >= 5){a=1}
+			if(num < 5){a=0}
+			for( var i=0;i<ali.length;i++){
+				ali[i].className = '';
+				}
+			ali[num].className = 'active';
+			img.src = arrurl[num];
+			}
+		ali[i].onmouseout = function (){
+			clearInterval(timer);
+			tab();
+			}
+		}
+</script>
+</body>
+</html>

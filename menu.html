@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+body,ul{ margin:0; padding:0;}
+li{ list-style:none;}
+a{ text-decoration:none; color:#fff;}
+#wrap{ margin:10px auto;width:700px; position:relative;}
+#nav{ width:700px; height:30px; padding:0 15px; background:#F39;}
+#nav li{ padding:0 15px; font-size:18px; line-height:30px;float:left;}
+#home,#aboutUs,#showcase,#blog{display:; position:absolute; top:40px; height:30px; background:#F9C; padding:0 10px; display:none; }
+#home{ left:10px;}
+#aboutUs{left:81px;}
+#showcase{ left:188px;}
+#blog{ left:244px;}
+#home li,#aboutUs li,#showcase li,#blog li{ padding:0 10px;font-size:16px; border-right:1px solid #FFC; line-height:24px; float:left; margin:3px 0px}
+#wrap .special{border-right:none;}
+</style>
+<script>
+window.onload = function (){
+var timer = null;
+
+function $(id, tag){
+				if(tag){
+					return document.getElementById(id).getElementsByTagName(tag);
+				} else {
+					return document.getElementById(id);
+				}		
+			}
+for(var i=0;i<$('nav','li').length;i++){
+	$('nav','li')[i].index = i;
+	$('wrap','ul')[i].index = i;
+
+	//导航移入事件
+	$('nav','li')[i].onmouseover = function (){
+		clearInterval(timer);
+		for(var j=1;j<$('wrap','ul').length;j++){
+			$('wrap','ul')[j].style.display = 'none';
+			}
+		$('wrap','ul')[this.index+1].style.display = 'block';
+		
+		}
+		//导航鼠标移出事件
+	$('nav','li')[i].onmouseout = function (){
+		 var num = this.index+1
+		timer = setInterval(function(){
+			$('wrap','ul')[num].style.display = 'none';
+			},100)
+		}
+	//鼠标移入子导航
+	$('wrap','ul')[i+1].onmouseover = function(){
+		this.style.display = 'block';
+		clearTimeout(timer);
+		}
+	$('wrap','ul')[i+1].onmouseout = function(){
+		var that = this;
+		timer = setTimeout(function(){
+			that.style.display = 'none';
+			},500)
+		}
+	
+	}
+	/*var timer = null;
+	var timers = null;
+	var num = 0;
+	var that = '';
+	var wrap = document.getElementById('wrap');
+	var nav = document.getElementById('nav');
+	var ali = nav.getElementsByTagName('li');
+	var aul = wrap.getElementsByTagName('ul');
+for(var i=0;i<aul.length;i++){
+	
+	ali[i].index = i;
+	aul[i].index = i;
+	//导航移入事件
+	ali[i].onmouseover = function (){
+		//for(var i=0;i<aul.length;i++){
+		clearInterval(timer);
+		for(var j=1;j<aul.length;j++){
+			aul[j].style.display = 'none';
+			}
+			//alert(this.index+1);
+		aul[this.index+1].style.display = 'block';
+		
+		}
+	//}
+		//导航鼠标移出事件
+	ali[i].onmouseout = function (){
+		num = this.index+1
+		timer = setTimeout(function (){
+		aul[num].style.display = 'none';
+			},500)
+		}
+	//鼠标移入子导航
+	aul[i+1].onmouseover = function(){
+		clearInterval(timer);
+		this.style.display = 'block';
+		
+		}
+	aul[i+1].onmouseover = function(){
+		var that = this
+		timer = setTimeout(function(){
+			that.style.display = 'none';
+			},500)
+		}
+	
+	}*/
+}
+</script>
+</head>
+
+<body>
+<div id="wrap">
+    <ul id="nav">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">关于我们</a></li>
+        <li><a href="#">作品</a></li>
+        <li><a href="#">博客</a></li>
+    </ul>
+    <ul id="home">
+        <li><a href="#">最近更新</a></li>
+        <li><a href="#">活动</a></li>
+        <li><a href="#">报名试听</a></li>
+        <li class="special"><a href="#">学员反馈</a></li>
+    </ul>
+    <ul id="aboutUs">
+        <li><a href="#">妙味课堂</a></li>
+        <li><a href="#">培训方式</a></li>
+        <li><a href="#">培训理念</a></li>
+        <li class="special"><a href="#">联系我们</a></li>
+    </ul>
+    <ul id="showcase">
+        <li><a href="#">般固</a></li>
+        <li><a href="#">MATRIX</a></li>
+        <li><a href="#">留学E网</a></li>
+        <li class="special"><a href="#">ECMall</a></li>
+    </ul>
+    <ul id="blog">
+        <li><a href="#">JS教程</a></li>
+        <li><a href="#">弹出层效果</a></li>
+        <li><a href="#">3D球面标签云</a></li>
+        <li class="special"><a href="#">Windows计算器</a></li>
+    </ul>
+</div>
+
+</body>
+</html>

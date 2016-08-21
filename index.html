@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<link href="style/index.css" rel="stylesheet" type="text/css">
+<script>
+window.onload = function (){
+	var oUl = document.getElementById('exe');
+	var aH2 = oUl.getElementsByTagName('h2');
+	var aUl = oUl.getElementsByTagName('ul');
+	
+	for ( var i=0;i<aH2.length;i++){
+		aH2[i].index = i;
+		aH2[i].onclick = function(){
+		for ( var i=0;i<aH2.length;i++){
+			aUl[i].style.display = 'none';
+			}
+		aUl[this.index].style.display = 'block';
+		}
+	}
+	
+}
+</script>
+</head>
+
+<body>
+<div id="main">
+	<ul id="exe">
+    	<li class="lis">
+        	<h2>第一课</h2>
+            <ul>
+            	<li class="none"><a href="setdiv.html">div样式设置</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第二课</h2>
+            <ul>
+            	<li><a href="sendinformation.html">模拟手机短信</a></li>
+            	<li class="none"><a href="pictrans.html">图片切换</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第三课</h2>
+            <ul>
+            	<li><a href="productLi.html">自动生成li</a></li>
+            	<li class="none"><a href="productV.html">生成V字</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第四课</h2>
+            <ul>
+            	<li><a href="thumbnail.html">缩略图切换</a></li>
+            	<li class="none"><a href="twopictrans.html">多组图片切换</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第五课</h2>
+            <ul>
+            	<li><a href="record.html">纪录片列表展示</a></li>
+            	<li><a href="modification.html">修改文本框</a></li>
+            	<li><a href="taboption.html">多层选项卡</a></li>
+            	<li class="none"><a href="#">商品计价</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第六课</h2>
+            <ul>
+            	<li><a href="grade.html">百度评分</a></li>
+            	<li class="none"><a href="choose.html">全选操作</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第七课</h2>
+            <ul>
+            	<li><a href="scroll.html">商品上下滚动</a></li>
+            	<li><a href="taobao.html">淘宝广告</a></li>
+            	<li><a href="autooption.html">自动轮换选项卡</a></li>
+            	<li class="none"><a href="menu.html">菜单</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第八课</h2>
+            <ul>
+            	<li><a href="divmove.html">DIV移动</a></li>
+            	<li><a href="divuodown.html">DIV掉落</a></li>
+            	<li><a href="shake.html">图片抖动</a></li>
+            	<li class="none"><a href="transplant.html">文字消失</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第九课</h2>
+            <ul>
+            	<li><a href="time.html">时钟</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第十课</h2>
+            <ul>
+            	<li><a href="found.html">查找、替换文件</a></li>
+            	<li class="none"><a href="movehome.html">文字搬运</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第十一课</h2>
+            <ul>
+            	<li><a href="order.html">排序</a></li>
+            	<li><a href="radom.html">图片随机滚动</a></li>
+            	<li><a href="facegame.html">小游戏一</a></li>
+            	<li><a href="game.html">小游戏二</a></li>
+            	<li class="none"><a href="fontsize.html">自定义字体</a></li>
+            </ul>
+        </li>
+        <li class="lis">
+        	<h2>第十二课</h2>
+            <ul>
+            	<li><a href="data.html">数据操作和弹出层</a></li>
+            	<li><a href="drag.html">拖拽</a></li>
+            	<li class="none"><a href="removemessage.html">留言批量删除</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

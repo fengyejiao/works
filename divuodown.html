@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="script/exe.js"></script>
+<script>
+window.onload = function (){
+	var str = '';
+	var len = 20;
+	var num = 0;
+	var a = 0;
+	var aDiv = document.getElementsByTagName('div');
+	var timer = null;
+	var timers = null;
+	for ( var i=0; i<len; i++ ) {
+		str += '<div style="width:50px; height:50px; background:red; position:absolute; top:0px; left:' + i*60 +'px;"></div>';
+	}
+	document.body.innerHTML = str;
+	document.onclick = function (){
+		clearInterval(timer);
+		timer = setInterval(function (){
+			doMove( aDiv[num], 'top', 23, 500,100 );
+			num++;
+			if(num === len){
+				num = 0;
+				clearInterval(timer);
+			}
+			
+			},100)
+			if( parseInt(getStyle( aDiv[a], 'top' )) === 500){
+				//clearInterval(timers);
+				timers = setInterval( function (){
+			doMove( aDiv[a], 'top', 23, 0,100 );
+			a ++;
+			if ( a === len ) {
+				a = 0;
+				clearInterval( timers );
+			}
+		}, 100 );
+				}
+		}	
+}
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

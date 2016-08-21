@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+
+#div1{width:100px;height:100px; background:#999; position:absolute; top:50px;}
+</style>
+<script>
+window.onload = function (){
+	var oInp = document.getElementById('input1');
+	var oDiv = document.getElementById('div1');
+	var arrL = [];
+	var arrT = [];
+	oDiv.onmousedown = function (ev){
+		var ev = ev || event;
+		var disX = ev.clientX - this.offsetLeft;
+		var disY = ev.clientY - this.offsetTop;
+		document.onmousemove = function (ev){
+			var ev = ev || event;
+			oDiv.style.left = ev.clientX - disX + 'px';
+			oDiv.style.top = ev.clientY  - disY + 'px';
+			clearInterval(oDiv.timer);
+			oDiv.timer = setInterval(function(){
+				arrL.push(ev.clientX - disX);
+				arrT.push(ev.clientY - disY);
+				},1)
+			}
+		document.onmouseup = function() {
+			clearInterval(oDiv.timer);
+			document.onmousemove = document.onmouseup = null;}
+			
+		}
+	oInp.onclick = function (){
+		//alert(arrL[arrL.length - 1])
+		var num = arrL.length - 1;
+		//clearInterval(oInp.timer);
+		oInp.timer = setInterval (function(){
+			//alert(1)
+			oDiv.style.left = arrL[num] + 'px';
+			oDiv.style.top = arrT[num] + 'px';
+			
+			num--;
+			if(num < 0){
+				clearInterval(oInp.timer);
+				arrL = [];
+				arrT = [];
+				}
+			},20)
+		
+		}
+
+	}
+</script>
+
+</head>
+
+<body>
+<input id="input1" type="button" value="回放">
+<div id="div1"></div>
+
+</body>
+</html>
